@@ -6,7 +6,7 @@
 
         <section class="content">
             <b-field v-for="(todo, index) in todoList" :key="index">
-                <b-input placeholder="todo" disabled :value="todo">
+                <b-input icon="account" placeholder="todo" disabled :value="todo" @ >
                 </b-input>
             </b-field>
         </section>
@@ -19,12 +19,17 @@
         data() {
             return {
                 todoInput: '',
-                todoList: []
+                todoList: JSON.parse(window.localStorage.getItem('todoList') || '[]')
             }
         },
         methods: {
             onEnterInput() {
-                this.todoList.push(this.todoInput);
+                // 把当前的todoList存入缓存
+                this.todoList.push(this.todoInput)
+                window.localStorage.setItem('todoList', JSON.stringify(this.todoList))
+
+                // enter后清空当前内容
+                this.todoInput = ''
             }
         }
     }

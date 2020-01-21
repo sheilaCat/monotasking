@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     onClickBottomBtn(number) {
-      const jumpPage = ['home', 'focusPage', 'home'];
+      const jumpPage = ['home', 'focusPage', 'about'];
       this.$router.push({name: jumpPage[number]})
     }
   }
